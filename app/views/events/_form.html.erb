@@ -1,0 +1,31 @@
+<div class="container">
+  <%= simple_form_for @event do |f| %>
+    <div class="control-group">
+      <%= f.association :category, :label => "Category", :autofocus => true, class: "form-control" %>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="control-group">
+          <%= f.input :starts_at, :as => :datetime_picker, :label => "Start Time" %>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="control-group">
+          <%= f.input :ends_at, :as => :datetime_picker, :label => "End Time" %>
+        </div>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.input :name, :label => "Event Name" %>
+    </div>
+    <div class="control-group">
+      <%= f.input :hero_image_url, :label => "Image url", class: "form-control" %>
+    </div>
+    <div class="control-group">
+      <%= f.input :extended_html_description, as: :wysihtml5, :label => "Description" %>
+    </div>
+    <div class="form-action">
+      <%= f.submit "Save", class: "btn btn-danger btn-lg" %>
+    </div>
+  <% end %>
+</div>
