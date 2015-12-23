@@ -12,4 +12,16 @@ class ApplicationController < ActionController::Base
   def authorize
     redirect_to log_in_path unless current_user
   end
+
+  after_filter :store_location
+
+  def store_location
+  # store last url - this is needed for post-login redirect to whatever the user last visited.
+    return unless request.get? 
+    if (request.path != "/users/sign_in" &&
+        request.path != "/users/sign_up" &&
+        !request.xhr?) # don't store ajax calls
+      session[:previous_url] = request.fullpath 
+    end
+  end 
 end

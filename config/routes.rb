@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :events do
     resources :tickets
   end
+  get "/mylist" => "events#mylist"
   get "/sign_up" => "users#new"
   post "/users" => "users#create"
 

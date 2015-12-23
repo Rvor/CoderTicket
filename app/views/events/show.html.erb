@@ -14,14 +14,20 @@
             </div>
 
             <div class="col-md-6 price text-right">
-              <%= number_to_currency(ticket_type.price, unit: 'VND', precision: 0) %>
+              <%= number_to_currency(ticket_type.price, unit: 'VND', precision: 0, format: "%n %u") %>
             </div>
           </div>
           <div class="clearfix"></div>
         <% end %>
-        <%= link_to new_event_ticket_path(@event) do %>
-          <button class='btn btn-lg btn-block btn-danger'> BOOK NOW </button>
+        
+        <% if current_user == @event.user %>
+          <%= link_to new_event_ticket_path(@event) do %>
+            <button class='btn btn-lg btn-block btn-primary'> PUBLISH NOW </button>
+          <% end %>
         <% end %>
+          <%= link_to new_event_ticket_path(@event) do %>
+            <button class='btn btn-lg btn-block btn-danger'> BOOK NOW </button>
+          <% end %>
       </div>
     </div>
     <div class="col-md-9 event-content">
@@ -35,17 +41,20 @@
           <%= @event.starts_at.strftime('%A, %d %b %Y %l:%M %p') %> 
         </div>
 
-        
-
-        <div class="pull-left">
-          <%= fa_icon 'map-marker' %>
-        </div>
-        <div class="venue-details">
-         <%= @event.venue.name %>
-         <br/>
-         <%= @event.venue.full_address %>
-        </div>
-
+        <% if @event.venue %>
+          <div class="pull-left">
+            <%= fa_icon 'map-marker' %>
+          </div>
+          <div class="venue-details">
+            <%= @event.venue.name %>
+          <br/>
+            <%= @event.venue.full_address %>
+          </div>
+        <% else %>
+          <div class="text-warning">
+            <p>Venue is missing. Add Venue before publish.</p>
+          </div>
+        <% end %>
         <div class="img-spacer">
           <%= image_tag 'shadow-top.png' %>
         </div>
