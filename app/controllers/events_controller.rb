@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_action :authorize, only: [:new, :create, :mylist]
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :publish]
 
   def index
     @events = Event.upcoming    
@@ -21,7 +21,9 @@ class EventsController < ApplicationController
   end
 
   def publish
-
+    print ">>>>>>>>>>>>><<<<<<<<<<<<<<<<<<"
+    Event.update(@event.id, published: true)
+    redirect_to @event, notice: "Your event was published."
   end
   def create
     @event = current_user.events.build(event_params)
@@ -36,7 +38,7 @@ class EventsController < ApplicationController
 
   def update
     if @event.update(event_params)
-      redirect_to @event
+      redirect_to @event, notice: "Your event has been udpated."
     else
       render 'edit'
     end

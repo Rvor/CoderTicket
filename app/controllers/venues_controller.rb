@@ -1,4 +1,5 @@
 class VenuesController < ApplicationController
+  before_action :authorize, only: [:new, :create]
   def new
     @venue = Venue.new
   end

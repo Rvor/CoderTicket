@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get "/mylist" => "events#mylist"
   get "/sign_up" => "users#new"
   post "/users" => "users#create"
+  put "/events/:id/publish", to: "events#publish", :as => "publish"
 
   get "/log_in" => "sessions#new"
   post "/log_in" => "sessions#create"

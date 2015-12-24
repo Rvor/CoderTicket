@@ -21,7 +21,7 @@
         <% end %>
         
         <% if current_user == @event.user %>
-          <%= link_to new_event_ticket_path(@event) do %>
+          <%= link_to publish_path(@event), :method => :put do %>
             <button class='btn btn-lg btn-block btn-primary'> PUBLISH NOW </button>
           <% end %>
         <% end %>
@@ -33,7 +33,12 @@
     <div class="col-md-9 event-content">
       <div class="hero-img hidden-sm-down" style="background-image: url(<%= @event.hero_image_url %>); background-size: cover;"> </div>
       <div class="container">
-        <h3> <%= @event.name %> </h3>
+        <div class="row">
+          <h3> <%= @event.name %> </h3>
+          <% if @event.user = current_user %>
+            <%= link_to "Edit event", edit_event_path(@event) %>
+          <% end %>
+        </div>
         <div class="pull-left">
           <%= fa_icon 'clock-o' %>
         </div>
