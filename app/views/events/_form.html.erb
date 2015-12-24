@@ -1,8 +1,20 @@
 <div class="container">
   <%= simple_form_for @event do |f| %>
-    <div class="control-group">
-      <%= f.association :category, :label => "Category", :autofocus => true, class: "form-control" %>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="control-group">
+          <%= f.association :category, :label => "Category", :autofocus => true, class: "form-control" %>
+        </div>
+      </div>
+  
+      <div class="col-md-6">
+        <div class="control-group">
+          <%= f.association :venue, :label => "Venue", class: "form-control" %>
+    
+      </div>
+      </div>
     </div>
+   
     <div class="row">
       <div class="col-md-6">
         <div class="control-group">

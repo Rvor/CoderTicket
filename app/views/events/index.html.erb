@@ -1,9 +1,21 @@
 <div class='events-header' style='background-image: url(<%= header_background_image_url %>)'>
   <div class="container">
     <h2> Discover upcoming events </h2>
-    <form>
-      <input type="text" class="form-control" name="search" placeholder="Search for events, shows, courses...">
-    </form>
+    <div class="row">
+       <%= simple_form_for(:search, url: search_path(:search), method: :get, html: { class: 'form-horizontal'}, wrapper: :horizontal_input_group) do |f| %>
+      <div class="form-inputs">
+        <%= f.input :search, wrapper: :horizontal_input_group, label: false do %>
+          <%= f.input_field :query, class: "form-control" %>
+
+          <span class="input-group-btn">
+            <%= button_tag(type: "submit", value: "Search", class: "btn btn-lg btn-secondary") do %>
+              <i class="fa fa-search"></i>
+            <% end %>
+          </span>
+      <% end %>
+      <% end %>
+  </div>
+  </div>
   </div>
 </div>
 <div class="container-fluid events-list">

@@ -1,13 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>CsTemplate</title>
+  <title>Coder Ticket</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
   <%= render "layouts/header" %>
+  <% flash.each do |name, msg| %>
+    <div class="alert alert-info alert-dismissible fade in" role="alert">
+      <button type="button"i class="close" data-dismiss="alert" aria-label="close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <%= content_tag(:div, msg, :id => "flash_#{name}" ) %>
+    </div>
+  <% end %>
 
   <%= yield %>
 

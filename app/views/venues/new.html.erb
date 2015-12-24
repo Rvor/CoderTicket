@@ -1,0 +1,14 @@
+<%= simple_form_for @venue do |f| %>
+  <div class="control-group">                                                                                     
+      <%= f.association :region, :label => "Region", :autofocus => true, class: "form-control" %>                
+   </div> 
+   <div class="control-group">
+     <%= f.input :name, class: "form-control" %>
+   </div> 
+  <div class="control-group"> 
+     <%= f.input :full_address, class: "form-control" %>
+   </div>
+   <div class="form-action">
+     <%= f.submit "Save", class: "btn btn-default" %>
+   </div> 
+<% end %>
