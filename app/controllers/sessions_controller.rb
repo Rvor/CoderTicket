@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     
     if user && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
-      redirect_to session[:previous_url] || root_path, notice: "Log in successfully."
+      redirect_to root_path, notice: "Log in successfully."
     else
       redirect_to '/log_in', :alert => "Email or password incorrect."
     end
