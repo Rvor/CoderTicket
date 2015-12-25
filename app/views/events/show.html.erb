@@ -36,7 +36,10 @@
         <div class="row">
           <h3> <%= @event.name %> </h3>
           <% if @event.user = current_user %>
-            <%= link_to "Edit event", edit_event_path(@event) %>
+            <div class="btn-group">
+              <%= link_to "Edit event", edit_event_path(@event), class: "btn btn-primary pull-right" %>
+              <%= link_to "Manage Ticket", event_ticket_types_path(@event), class: "btn btn-primary pull-right" %>
+            </div>
           <% end %>
         </div>
         <div class="pull-left">

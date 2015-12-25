@@ -21,9 +21,12 @@ class EventsController < ApplicationController
   end
 
   def publish
-    print ">>>>>>>>>>>>><<<<<<<<<<<<<<<<<<"
-    Event.update(@event.id, published: true)
-    redirect_to @event, notice: "Your event was published."
+    if @event.ticket_types.count == 0 
+      redirect_to @event, alert: "Please add ticket types before publish."
+    else
+      Event.update(@event.id, published: true)
+      redirect_to @event, notice: "Your event was published."
+    end
   end
   def create
     @event = current_user.events.build(event_params)

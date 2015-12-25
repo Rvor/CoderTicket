@@ -21,7 +21,6 @@
 
     </div>
   </div>
-  <%= simple_form_for :event_tickets, url: event_tickets_path, :method => :post do |f| %>
   <div class="row">
     <div class="col-md-11 col-md-offset-1">  
       <table class="table">
@@ -29,24 +28,20 @@
         <th> Unit Price </th>
         <th> Quantity </th>
       
-        <% @tickets.each do |type| %>
-          <%= f.fields_for type do |t| %>
+        <% @event.ticket_types.each do |type| %>
         <tr>
-          <td> <%= type.ticket_type_name %> </td>
-          <td> <%= number_to_currency(type.ticket_type_price, unit: 'VND', precision: 0, format: "%n %u") %> </td>
-          <td> <%= t.input :quantity, collection: 0..10, class: 'form-control', :label=> false, selected: 0%></td> 
+          <td> <%= type.name %> </td>
+          <td> <%= number_to_currency(type.price, unit: 'VND', precision: 0, format: "%n %u") %> </td>
+          <td> <%= type.max_quantity %> </td>
         </tr>
-        <% end %> 
         <% end %> 
       </table>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-2 col-md-offset-5">
-      <%= f.submit "Buy", class:"btn btn-success btn-lg btn-block" %>
-    </div>
-    <div>
-    <% end %>
-
-</div>  
-
+  <div class="row center-block">
+    <div class="col-md-6 col-md-offset-4">
+      <%= link_to "Add Ticket Type", new_event_ticket_type_path, class: "btn btn-success btn-lg" %>
+      <%= link_to "Back To Event", @event, class: "btn btn-secondary btn-lg" %>
+  <div>
+  <div>
+</div> 

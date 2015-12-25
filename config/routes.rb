@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   resources :events do
     resources :tickets
+    put "/buy" => "tickets#buy", :as => "buy"
+    resources :ticket_types
   end
   get "/mylist" => "events#mylist"
   get "/sign_up" => "users#new"
