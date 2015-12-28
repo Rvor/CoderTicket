@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   resources :events do
     resources :tickets
-    put "/buy" => "tickets#buy", :as => "buy"
+    put "/buy_tickets" => "tickets#buy", :as => "buy_tickets"
     resources :ticket_types
   end
   get "/mylist" => "events#mylist"

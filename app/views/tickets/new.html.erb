@@ -21,19 +21,19 @@
 
     </div>
   </div>
-  <%= simple_form_for :event_tickets, url: event_tickets_path, :method => :post do |f| %>
+  <%= simple_form_for :event_tickets, :url => event_buy_tickets_path, :html => {:method => :put} do |f| %>
   <div class="row">
     <div class="col-md-11 col-md-offset-1">  
       <table class="table">
         <th> Ticket Type </th>
         <th> Unit Price </th>
         <th> Quantity </th>
-      
-        <% @tickets.each do |type| %>
-          <%= f.fields_for type do |t| %>
+        <% @event.ticket_types.each do |type| %> 
+          <%= f.fields_for "tickets[]", type do |t| %>
+            <%= t.input :id, as: :hidden %>
         <tr>
-          <td> <%= type.ticket_type_name %> </td>
-          <td> <%= number_to_currency(type.ticket_type_price, unit: 'VND', precision: 0, format: "%n %u") %> </td>
+          <td> <%= type.name %> </td>
+          <td> <%= number_to_currency(type.price, unit: 'VND', precision: 0, format: "%n %u") %> </td>
           <td> <%= t.input :quantity, collection: 0..10, class: 'form-control', :label=> false, selected: 0%></td> 
         </tr>
         <% end %> 
